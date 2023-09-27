@@ -1,8 +1,13 @@
 import TrackList from "./TrackList";
+import Button from "./Button";
 
-function Playlist({ playlist, removeFromPlaylist, changeName }) {
+function Playlist({ playlist, removeFromPlaylist, changeName, savePlaylist }) {
   function changeHandler(event) {
     changeName(event.target.value);
+  }
+
+  function clickHandlerSave(event) {
+    savePlaylist();
   }
 
   return (
@@ -18,6 +23,7 @@ function Playlist({ playlist, removeFromPlaylist, changeName }) {
         tracks={playlist.tracks}
         removeFromPlaylist={removeFromPlaylist}
       />
+      <Button onClick={clickHandlerSave}>Save Playlist</Button>
     </div>
   );
 }
