@@ -1,9 +1,4 @@
-function Button({ addToPlaylist, track }) {
-  function clickHandler(event) {
-    addToPlaylist(track);
-  }
-
-  return <button onClick={clickHandler}>+</button>;
+function Button({ onClick, children }) {
+  return <button onClick={onClick}>{children}</button>;
 }
-
 export default Button;

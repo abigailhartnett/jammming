@@ -26,7 +26,7 @@ let trackList = [
 ];
 
 let playlist = {
-  name: "Abigail's Repeat-Ones",
+  name: "My Playlist",
   tracks: [],
 };
 
@@ -40,11 +40,33 @@ function App() {
     }
   }
 
+  function removeFromPlaylist(track) {
+    if (list.tracks.includes(track)) {
+      list.tracks.splice(list.tracks.indexOf(track), 1);
+      setList((prev) => ({
+        name: prev.name,
+        tracks: list.tracks,
+      }));
+    }
+  }
+
+  function changeName(newName) {
+    setList((prev) => ({
+      name: newName,
+      tracks: prev.tracks,
+    }));
+  }
+
   return (
-    <>
+    <div>
       <SearchResults trackList={tracks} addToPlaylist={addToPlaylist} />
-      <Playlist playlist={list} />
-    </>
+      <Playlist
+        playlist={list}
+        removeFromPlaylist={removeFromPlaylist}
+        changeName={changeName}
+      />
+      {console.log(list)}
+    </div>
   );
 }
 

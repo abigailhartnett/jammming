@@ -1,10 +1,23 @@
 import TrackList from "./TrackList";
 
-function Playlist({ playlist }) {
+function Playlist({ playlist, removeFromPlaylist, changeName }) {
+  function changeHandler(event) {
+    changeName(event.target.value);
+  }
+
   return (
     <div>
-      <h1>{playlist.name}</h1>
-      <TrackList tracks={playlist.tracks} />
+      <input
+        type="text"
+        name="playlistName"
+        id="playlistName"
+        value={playlist.name}
+        onChange={changeHandler}
+      />
+      <TrackList
+        tracks={playlist.tracks}
+        removeFromPlaylist={removeFromPlaylist}
+      />
     </div>
   );
 }

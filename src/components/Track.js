@@ -1,11 +1,23 @@
 import Button from "./Button";
-function Track({ track, addToPlaylist }) {
+function Track({ track, addToPlaylist, removeFromPlaylist }) {
+  function clickHandlerAdd(event) {
+    addToPlaylist(track);
+  }
+
+  function clickHandlerRemove(event) {
+    removeFromPlaylist(track);
+  }
+
   return (
     <div key={track.id}>
       <p>{track.name}</p>
       <p>{track.artist}</p>
       <p>{track.album}</p>
-      <Button addToPlaylist={addToPlaylist} track={track} />
+      {addToPlaylist ? (
+        <Button onClick={clickHandlerAdd}>+</Button>
+      ) : (
+        <Button onClick={clickHandlerRemove}>-</Button>
+      )}
     </div>
   );
 }
