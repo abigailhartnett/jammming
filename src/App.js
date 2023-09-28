@@ -3,6 +3,7 @@ import TrackList from "./components/TrackList";
 import Playlist from "./components/Playlist";
 import SearchResults from "./components/SearchResults";
 import Button from "./components/Button";
+import SearchBar from "./components/SearchBar";
 import { useState, useEffect } from "react";
 
 let trackList = [
@@ -101,7 +102,9 @@ function App() {
       return accumulator;
     }, {});
     window.setTimeout(function () {
-      window.location.href = window.location.href.split("#")[0];
+      window.location.href =
+        window.location.href.split("?")[0] ||
+        window.location.href.split("#")[0];
     }, 3600000);
     return token;
   }
@@ -122,6 +125,7 @@ function App() {
   return (
     <div>
       <Button onClick={requestSpotifyAuth}>Login to Spotify</Button>
+      <SearchBar />
       <SearchResults trackList={tracks} addToPlaylist={addToPlaylist} />
       <Playlist
         playlist={list}
