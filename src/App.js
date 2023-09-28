@@ -2,7 +2,8 @@ import "./App.css";
 import TrackList from "./components/TrackList";
 import Playlist from "./components/Playlist";
 import SearchResults from "./components/SearchResults";
-import { useState } from "react";
+import Button from "./components/Button";
+import { useState, useEffect } from "react";
 
 let trackList = [
   {
@@ -74,8 +75,53 @@ function App() {
     console.log(playlist);
   }
 
+  function requestSpotifyAuth() {
+    const client_id = "efabbdc785874423992878f942b0916d";
+    const redirect_uri = "http://localhost:3000";
+    const scope = [
+      "playlist-modify-private",
+      "playlist-modify-public",
+      //"change-playlist-details",
+    ];
+
+    let url = "https://accounts.spotify.com/authorize";
+    url += "?response_type=token";
+    url += "&client_id=" + encodeURIComponent(client_id);
+    url += "&scope=" + encodeURIComponent(scope);
+    url += "&redirect_uri=" + encodeURIComponent(redirect_uri);
+
+    window.location = url;
+  }
+
+  function getAccessToken(hash) {
+    const params = hash.substring(1).split("&");
+    const token = params.reduce((accumulator, currentValue) => {
+      const [key, value] = currentValue.split("=");
+      accumulator[key] = value;
+      return accumulator;
+    }, {});
+    window.setTimeout(function () {
+      window.location.href = window.location.href.split("#")[0];
+    }, 3600000);
+    return token;
+  }
+
+  useEffect(() => {
+    if (window.location.hash) {
+      const { access_token, expires_in, token_type } = getAccessToken(
+        window.location.hash
+      );
+
+      localStorage.clear();
+      localStorage.setItem("accessToken", access_token);
+      localStorage.setItem("tokenType", token_type);
+      localStorage.setItem("expiresIn", expires_in);
+    }
+  });
+
   return (
     <div>
+      <Button onClick={requestSpotifyAuth}>Login to Spotify</Button>
       <SearchResults trackList={tracks} addToPlaylist={addToPlaylist} />
       <Playlist
         playlist={list}
