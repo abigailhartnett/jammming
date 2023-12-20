@@ -11,14 +11,18 @@ function Playlist({ playlist, removeFromPlaylist, changeName, savePlaylist }) {
   }
 
   return (
-    <div>
-      <input
-        type="text"
-        name="playlistName"
-        id="playlistName"
-        value={playlist.name}
-        onChange={changeHandler}
-      />
+    <div className="trackList">
+      <h2>
+        <input
+          type="text"
+          name="playlistName"
+          id="playlistName"
+          value={playlist.name}
+          onChange={changeHandler}
+          className="heading-lg"
+        />
+      </h2>
+
       <TrackList
         tracks={playlist.tracks}
         removeFromPlaylist={removeFromPlaylist}

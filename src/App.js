@@ -126,13 +126,15 @@ function App() {
     <div>
       <Button onClick={requestSpotifyAuth}>Login to Spotify</Button>
       <SearchBar />
-      <SearchResults trackList={tracks} addToPlaylist={addToPlaylist} />
-      <Playlist
-        playlist={list}
-        removeFromPlaylist={removeFromPlaylist}
-        changeName={changeName}
-        savePlaylist={savePlaylist}
-      />
+      <div className="playlist-container">
+        <SearchResults trackList={tracks} addToPlaylist={addToPlaylist} />
+        <Playlist
+          playlist={list}
+          removeFromPlaylist={removeFromPlaylist}
+          changeName={changeName}
+          savePlaylist={savePlaylist}
+        />
+      </div>
       {console.log(list)}
     </div>
   );

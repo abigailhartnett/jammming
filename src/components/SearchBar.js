@@ -1,11 +1,13 @@
 function SearchBar() {
   return (
-    <form>
-      <label for="search" id="search">
+    <form className="search-bar">
+      <label for="search" id="search" className="heading-md">
         Find your favorite songs
       </label>
-      <input type="text" name="search" id="search" />
-      <input type="submit" value="Search" />
+      <div>
+        <input type="text" name="search" id="search" />
+        <input type="submit" value="Search" />
+      </div>
     </form>
   );
 }

@@ -9,15 +9,19 @@ function Track({ track, addToPlaylist, removeFromPlaylist }) {
   }
 
   return (
-    <div key={track.id}>
-      <p>{track.name}</p>
-      <p>{track.artist}</p>
-      <p>{track.album}</p>
-      {addToPlaylist ? (
-        <Button onClick={clickHandlerAdd}>+</Button>
-      ) : (
-        <Button onClick={clickHandlerRemove}>-</Button>
-      )}
+    <div key={track.id} className="track">
+      <div>
+        <p className="heading-md">{track.name}</p>
+        <p>{track.artist}</p>
+        <p>{track.album}</p>
+      </div>
+      <div className="playlist-button">
+        {addToPlaylist ? (
+          <Button onClick={clickHandlerAdd}>+</Button>
+        ) : (
+          <Button onClick={clickHandlerRemove}>-</Button>
+        )}
+      </div>
     </div>
   );
 }
