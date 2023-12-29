@@ -5,6 +5,7 @@ import SearchResults from "./components/SearchResults";
 import Button from "./components/Button";
 import SearchBar from "./components/SearchBar";
 import { useState, useEffect } from "react";
+import { spotifyLogin } from "./SpotifyAuth.js";
 
 let trackList = [
   {
@@ -45,6 +46,10 @@ function App() {
   const [list, setList] = useState(playlist);
   const [savedList, setSavedList] = useState(savedPlaylist);
 
+  function handleLogin() {
+    spotifyLogin();
+  }
+
   function addToPlaylist(track) {
     if (!list.tracks.includes(track)) {
       setList((prev) => ({ name: prev.name, tracks: [track, ...prev.tracks] }));
@@ -76,55 +81,9 @@ function App() {
     console.log(playlist);
   }
 
-  function requestSpotifyAuth() {
-    const client_id = "efabbdc785874423992878f942b0916d";
-    const redirect_uri = "http://localhost:3000";
-    const scope = [
-      "playlist-modify-private",
-      "playlist-modify-public",
-      //"change-playlist-details",
-    ];
-
-    let url = "https://accounts.spotify.com/authorize";
-    url += "?response_type=token";
-    url += "&client_id=" + encodeURIComponent(client_id);
-    url += "&scope=" + encodeURIComponent(scope);
-    url += "&redirect_uri=" + encodeURIComponent(redirect_uri);
-
-    window.location = url;
-  }
-
-  function getAccessToken(hash) {
-    const params = hash.substring(1).split("&");
-    const token = params.reduce((accumulator, currentValue) => {
-      const [key, value] = currentValue.split("=");
-      accumulator[key] = value;
-      return accumulator;
-    }, {});
-    window.setTimeout(function () {
-      window.location.href =
-        window.location.href.split("?")[0] ||
-        window.location.href.split("#")[0];
-    }, 3600000);
-    return token;
-  }
-
-  useEffect(() => {
-    if (window.location.hash) {
-      const { access_token, expires_in, token_type } = getAccessToken(
-        window.location.hash
-      );
-
-      localStorage.clear();
-      localStorage.setItem("accessToken", access_token);
-      localStorage.setItem("tokenType", token_type);
-      localStorage.setItem("expiresIn", expires_in);
-    }
-  });
-
   return (
     <div>
-      <Button onClick={requestSpotifyAuth}>Login to Spotify</Button>
+      <Button onClick={handleLogin}>Login to Spotify</Button>
       <SearchBar />
       <div className="playlist-container">
         <SearchResults trackList={tracks} addToPlaylist={addToPlaylist} />
