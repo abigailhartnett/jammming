@@ -1,26 +1,9 @@
-import { useState, useEffect } from "react";
+import SpotifyAPI from "../spotifyAPI";
 
-const SearchBar = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-
-  const handleSearch = async () => {
-    try {
-      const response = await fetch(
-        `https://api.spotify.com/v1/search?q=${searchQuery}&type=track`,
-        {}
-      );
-
-      if (!response.ok) {
-        throw new Error("Spotify API request failed.");
-      }
-
-      const data = await response.json();
-      setSearchResults(data.tracks.items);
-    } catch (error) {
-      console.error(`Spotify API request failed`);
-    }
-  };
+const SearchBar = ({ setAlbums, setSearchQuery, searchQuery }) => {
+  async function handleSearch() {
+    await SpotifyAPI(searchQuery, setAlbums);
+  }
 
   return (
     <div className="search-bar">
@@ -31,7 +14,7 @@ const SearchBar = () => {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={() => handleSearch(searchQuery)}>Search</button>
     </div>
   );
 };

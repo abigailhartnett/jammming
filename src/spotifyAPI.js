@@ -1,42 +1,40 @@
-const SpotifyAPI = () => {
-    return(
-    
-        function requestSpotifyAuth() {
-        const client_id = "efabbdc785874423992878f942b0916d";
-        const redirect_uri = "http://localhost:3000";
-        const scope = [
-          "playlist-modify-private",
-          "playlist-modify-public",
-          "user-read-private",
-          "user-read-email",
-          //"change-playlist-details",
-        ];
-      
-        let url = "https://accounts.spotify.com/authorize";
-        url += "?response_type=token";
-        url += "&client_id=" + encodeURIComponent(client_id);
-        url += "&scope=" + encodeURIComponent(scope);
-        url += "&redirect_uri=" + encodeURIComponent(redirect_uri);
-      
-        window.location = url;
-      }
-      
-      function getAccessToken(hash) {
-        const params = hash.substring(1).split("&");
-        const token = params.reduce((accumulator, currentValue) => {
-          const [key, value] = currentValue.split("=");
-          accumulator[key] = value;
-          return accumulator;
-        }, {});
-        window.setTimeout(function () {
-          window.location.href =
-            window.location.href.split("?")[0] || window.location.href.split("#")[0];
-        }, 3600000);
-        return token;
-      }
-    );
+async function SpotifyAPI(searchQuery, setAlbums, albums) {
+  // Future note: Handle cases where "access_token" is undefined or falsy
+  const accessToken = localStorage.getItem("accessToken");
+  const CLIENT_ID = "efabbdc785874423992878f942b0916d";
+  const CLIENT_SECRET = "2cef9e0db446469b8bb61e9a2cc62b55";
+
+  // Get request using search to get the Aritist ID
+  const searchParameters = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+  };
+  const artistID = await fetch(
+    "https://api.spotify.com/v1/search?q=" + searchQuery + "&type=artist",
+    searchParameters
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      return data.artists.items[0].id;
+    });
+
+  // Get request with Artist ID, grab all albums from artist
+  const returnedAlbums = await fetch(
+    "https://api.spotify.com/v1/artists/" +
+      artistID +
+      "/albums" +
+      "?include_groups=album&market=US&limit=50",
+    searchParameters
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      setAlbums(data.items);
+    });
+
+  // Display those albums to the user
 }
 
 export default SpotifyAPI;
-
-

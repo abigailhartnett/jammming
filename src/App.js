@@ -1,11 +1,11 @@
 import "./App.css";
-import TrackList from "./components/TrackList";
 import Playlist from "./components/Playlist";
 import SearchResults from "./components/SearchResults";
 import Button from "./components/Button";
 import SearchBar from "./components/SearchBar";
 import { useState, useEffect } from "react";
-import { spotifyLogin } from "./SpotifyAuth.js";
+import { spotifyLogin, useDesctructuredParams } from "./SpotifyAuth.js";
+// import SpotifyAPI from "./spotifyAPI.js";
 
 let trackList = [
   {
@@ -42,6 +42,12 @@ let savedPlaylist = {
 };
 
 function App() {
+  //save spotifyAuth data to local storage before running API calls
+  useDesctructuredParams();
+
+  //create ability to save albums in an array
+  const [albums, setAlbums] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [tracks, setTracks] = useState(trackList);
   const [list, setList] = useState(playlist);
   const [savedList, setSavedList] = useState(savedPlaylist);
@@ -49,6 +55,10 @@ function App() {
   function handleLogin() {
     spotifyLogin();
   }
+
+  // function handleSearch() {
+  //   SpotifyAPI(searchQuery);
+  // }
 
   function addToPlaylist(track) {
     if (!list.tracks.includes(track)) {
@@ -84,9 +94,14 @@ function App() {
   return (
     <div>
       <Button onClick={handleLogin}>Login to Spotify</Button>
-      <SearchBar />
+      <SearchBar
+        setAlbums={setAlbums}
+        setSearchQuery={setSearchQuery}
+        searchQuery={searchQuery}
+        albums={albums}
+      />
       <div className="playlist-container">
-        <SearchResults trackList={tracks} addToPlaylist={addToPlaylist} />
+        <SearchResults trackList={albums} addToPlaylist={addToPlaylist} />
         <Playlist
           playlist={list}
           removeFromPlaylist={removeFromPlaylist}
@@ -94,7 +109,9 @@ function App() {
           savePlaylist={savePlaylist}
         />
       </div>
-      {console.log(list)}
+      {useEffect(() => {
+        console.log(albums);
+      }, [albums])}
     </div>
   );
 }

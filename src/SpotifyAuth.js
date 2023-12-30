@@ -17,11 +17,13 @@ ${AUTH_ENDPOINT}
 &response_type=${RESPONSE_TYPE}
 &show_dialog=true`;
 
+// Future changes: refactor this--use an anchor tag instead
+
 export function spotifyLogin() {
   window.location.href = loginURL;
 }
 
-function getParamsFromSpotifyAuth(hash) {
+export function getParamsFromSpotifyAuth(hash) {
   const stringAfterHash = hash.substring(1);
   const urlParams = stringAfterHash.split("&");
   const params = urlParams.reduce((acc, curr) => {
@@ -29,11 +31,10 @@ function getParamsFromSpotifyAuth(hash) {
     acc[key] = value;
     return acc;
   }, {});
-
   return params;
 }
 
-export function useDesctructureParams() {
+export function useDesctructuredParams() {
   useEffect(() => {
     if (window.location.hash) {
       const { access_token, expires_in, token_type } = getParamsFromSpotifyAuth(
