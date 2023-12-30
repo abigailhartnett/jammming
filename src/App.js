@@ -5,7 +5,7 @@ import Button from "./components/Button";
 import SearchBar from "./components/SearchBar";
 import { useState, useEffect } from "react";
 import { spotifyLogin, useDesctructuredParams } from "./SpotifyAuth.js";
-// import SpotifyAPI from "./spotifyAPI.js";
+import SpotifyAPI from "./spotifyAPI.js";
 
 let trackList = [
   {
@@ -48,7 +48,7 @@ function App() {
   //create ability to save albums in an array
   const [albums, setAlbums] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  // const [tracks, setTracks] = useState(trackList);
+  const [tracks, setTracks] = useState(trackList);
   const [list, setList] = useState(playlist);
   const [savedList, setSavedList] = useState(savedPlaylist);
 
