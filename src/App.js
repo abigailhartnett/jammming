@@ -48,7 +48,7 @@ function App() {
   //create ability to save albums in an array
   const [albums, setAlbums] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [tracks, setTracks] = useState(trackList);
+  // const [tracks, setTracks] = useState(trackList);
   const [list, setList] = useState(playlist);
   const [savedList, setSavedList] = useState(savedPlaylist);
 
