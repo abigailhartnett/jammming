@@ -1,4 +1,4 @@
-async function SpotifyAPI(searchQuery, setTracks, tracks) {
+async function SpotifySearchAPI(searchQuery, setTracks, tracks) {
   // Future note: Handle cases where "access_token" is undefined or falsy
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -45,4 +45,4 @@ async function SpotifyAPI(searchQuery, setTracks, tracks) {
   }
 }
 
-export default SpotifyAPI;
+export default SpotifySearchAPI;

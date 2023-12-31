@@ -1,9 +1,9 @@
-import SpotifyAPI from "../spotifyAPI";
+import SpotifySearchAPI from "../spotifySearchAPI";
 
 const SearchBar = ({ setTracks, setSearchQuery, searchQuery }) => {
   async function handleSearch(e) {
     e.preventDefault();
-    await SpotifyAPI(searchQuery, setTracks);
+    await SpotifySearchAPI(searchQuery, setTracks);
   }
 
   return (

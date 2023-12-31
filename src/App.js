@@ -5,7 +5,6 @@ import SearchBar from "./components/SearchBar";
 import { useState } from "react";
 import { useDesctructuredParams } from "./SpotifyAuth.js";
 import LoginPage from "./pages/login.js";
-// import SpotifyAPI from "./spotifyAPI.js";
 
 let playlist = {
   name: "My Playlist",
