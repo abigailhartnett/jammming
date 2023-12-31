@@ -3,7 +3,7 @@ import Playlist from "./components/Playlist";
 import SearchResults from "./components/SearchResults";
 import Button from "./components/Button";
 import SearchBar from "./components/SearchBar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { spotifyLogin, useDesctructuredParams } from "./SpotifyAuth.js";
 // import SpotifyAPI from "./spotifyAPI.js";
 
@@ -83,9 +83,6 @@ function App() {
           savePlaylist={savePlaylist}
         />
       </div>
-      {/* {useEffect(() => {
-        console.log(tracks);
-      }, [tracks])} */}
     </div>
   );
 }
