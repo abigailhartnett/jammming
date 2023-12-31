@@ -2,7 +2,12 @@ import { useEffect } from "react";
 
 const CLIENT_ID = "efabbdc785874423992878f942b0916d";
 const REDIRECT_URI = "http://localhost:3000";
-const SCOPES = ["playlist-modify-private", "playlist-modify-public"];
+const SCOPES = [
+  "playlist-modify-private",
+  "playlist-modify-public",
+  "user-read-currently-playing",
+  "user-read-playback-state",
+];
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "token";
 

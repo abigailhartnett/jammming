@@ -6,6 +6,7 @@ function TrackList({ tracks, addToPlaylist, removeFromPlaylist }) {
       {tracks.map((track) => {
         return (
           <Track
+            key={track.id}
             track={track}
             addToPlaylist={addToPlaylist}
             removeFromPlaylist={removeFromPlaylist}

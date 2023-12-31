@@ -1,6 +1,6 @@
 import TrackList from "./TrackList";
 
-function SearchResults({ trackList, addToPlaylist }) {
+function SearchResults({ tracks, trackList, addToPlaylist }) {
   return (
     <div className="trackList">
       <h2 className="heading-lg">Search</h2>

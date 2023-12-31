@@ -1,9 +1,9 @@
-async function SpotifyAPI(searchQuery, setAlbums, albums) {
+async function SpotifyAPI(searchQuery, setTracks, tracks) {
   // Future note: Handle cases where "access_token" is undefined or falsy
   try {
     const accessToken = localStorage.getItem("accessToken");
 
-    // Get request using search to get the Aritist ID
+    // Get request using search to get the data
     const searchParameters = {
       method: "GET",
       headers: {
@@ -11,46 +11,39 @@ async function SpotifyAPI(searchQuery, setAlbums, albums) {
         Authorization: "Bearer " + accessToken,
       },
     };
-    const artistID = await fetch(
-      "https://api.spotify.com/v1/search?q=" + searchQuery + "&type=artist",
-      searchParameters
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.artists) {
-          if (data.artists.items) {
-            // console.log(data.artists.items[0]);
-            return data.artists.items[0].id;
-          }
-        }
-      })
-      .catch((error) => {
-        console.error("Call 1 - Error fetching data from Spotify:".error);
-      });
 
-    // Get request with Artist ID, grab all albums from artist
+    console.log(searchQuery);
 
     //eslint-disable-next-line no-unused-vars
-    const _returnAlbums = await fetch(
-      "https://api.spotify.com/v1/artists/" +
-        artistID +
-        "/albums" +
-        "?include_groups=album&market=US&limit=50",
+    const _trackList = await fetch(
+      "https://api.spotify.com/v1/search?q=" + searchQuery + "&type=track",
       searchParameters
     )
       .then((response) => response.json())
       .then((data) => {
-        if (data.items) {
-          setAlbums(data.items);
+        if (data.tracks && data.tracks.items && data.tracks.items.length > 0) {
+          // Use returned data to setTracks to an array of objects containing only the data I want
+          const tracksData = data.tracks.items.map((track) => {
+            return {
+              id: track.id,
+              name: track.name,
+              album: track.album.name,
+              artist: track.artists.map((artist) => artist.name).join(", "),
+              uri: track.uri,
+            };
+          });
+          setTracks(tracksData);
+        } else {
+          console.log("No tracks found");
         }
       })
       .catch((error) => {
-        console.error("Call 2 - Error fetching data from Spotify:", error);
+        console.error(
+          "Track data call - Error fetching data from Spotify:".error
+        );
       });
-
-    // Display those albums to the user
   } catch (error) {
-    console.error("Call 3 - Error fetching data from Spotify:".error);
+    console.error("API call - Error fetching data from Spotify:".error);
   }
 }
 

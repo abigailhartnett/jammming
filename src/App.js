@@ -7,30 +7,6 @@ import { useState, useEffect } from "react";
 import { spotifyLogin, useDesctructuredParams } from "./SpotifyAuth.js";
 // import SpotifyAPI from "./spotifyAPI.js";
 
-// let trackList = [
-//   {
-//     id: "1",
-//     name: "Shoulda Said No",
-//     artist: "Taylor Swift",
-//     album: "Taylor Swift Album 1",
-//     uri: "/tracks/1",
-//   },
-//   {
-//     id: "2",
-//     name: "Bad Guy",
-//     artist: "Billie Eilish",
-//     album: "When We All Fall Asleep Where Do We Go",
-//     uri: "/tracks/2",
-//   },
-//   {
-//     id: "3",
-//     name: "One Thing",
-//     artist: "Jonathan Groff and Jessie Shelton",
-//     album: "36 Questions",
-//     uri: "/tracks/3",
-//   },
-// ];
-
 let playlist = {
   name: "My Playlist",
   tracks: [],
@@ -45,10 +21,8 @@ function App() {
   //save spotifyAuth data to local storage before running API calls
   useDesctructuredParams();
 
-  //create ability to save albums in an array
-  const [albums, setAlbums] = useState([]);
+  const [tracks, setTracks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  // const [tracks, setTracks] = useState(trackList);
   const [list, setList] = useState(playlist);
   const [savedList, setSavedList] = useState(savedPlaylist);
 
@@ -95,13 +69,13 @@ function App() {
     <div>
       <Button onClick={handleLogin}>Login to Spotify</Button>
       <SearchBar
-        setAlbums={setAlbums}
+        setTracks={setTracks}
         setSearchQuery={setSearchQuery}
         searchQuery={searchQuery}
-        albums={albums}
+        tracks={tracks}
       />
       <div className="playlist-container">
-        <SearchResults trackList={albums} addToPlaylist={addToPlaylist} />
+        <SearchResults trackList={tracks} addToPlaylist={addToPlaylist} />
         <Playlist
           playlist={list}
           removeFromPlaylist={removeFromPlaylist}
@@ -109,9 +83,9 @@ function App() {
           savePlaylist={savePlaylist}
         />
       </div>
-      {useEffect(() => {
-        console.log(albums);
-      }, [albums])}
+      {/* {useEffect(() => {
+        console.log(tracks);
+      }, [tracks])} */}
     </div>
   );
 }
