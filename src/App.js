@@ -5,31 +5,31 @@ import Button from "./components/Button";
 import SearchBar from "./components/SearchBar";
 import { useState, useEffect } from "react";
 import { spotifyLogin, useDesctructuredParams } from "./SpotifyAuth.js";
-import SpotifyAPI from "./spotifyAPI.js";
+// import SpotifyAPI from "./spotifyAPI.js";
 
-let trackList = [
-  {
-    id: "1",
-    name: "Shoulda Said No",
-    artist: "Taylor Swift",
-    album: "Taylor Swift Album 1",
-    uri: "/tracks/1",
-  },
-  {
-    id: "2",
-    name: "Bad Guy",
-    artist: "Billie Eilish",
-    album: "When We All Fall Asleep Where Do We Go",
-    uri: "/tracks/2",
-  },
-  {
-    id: "3",
-    name: "One Thing",
-    artist: "Jonathan Groff and Jessie Shelton",
-    album: "36 Questions",
-    uri: "/tracks/3",
-  },
-];
+// let trackList = [
+//   {
+//     id: "1",
+//     name: "Shoulda Said No",
+//     artist: "Taylor Swift",
+//     album: "Taylor Swift Album 1",
+//     uri: "/tracks/1",
+//   },
+//   {
+//     id: "2",
+//     name: "Bad Guy",
+//     artist: "Billie Eilish",
+//     album: "When We All Fall Asleep Where Do We Go",
+//     uri: "/tracks/2",
+//   },
+//   {
+//     id: "3",
+//     name: "One Thing",
+//     artist: "Jonathan Groff and Jessie Shelton",
+//     album: "36 Questions",
+//     uri: "/tracks/3",
+//   },
+// ];
 
 let playlist = {
   name: "My Playlist",
@@ -48,7 +48,7 @@ function App() {
   //create ability to save albums in an array
   const [albums, setAlbums] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [tracks, setTracks] = useState(trackList);
+  // const [tracks, setTracks] = useState(trackList);
   const [list, setList] = useState(playlist);
   const [savedList, setSavedList] = useState(savedPlaylist);
 
