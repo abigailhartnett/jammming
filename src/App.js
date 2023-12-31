@@ -1,10 +1,10 @@
 import "./App.css";
 import Playlist from "./components/Playlist";
 import SearchResults from "./components/SearchResults";
-import Button from "./components/Button";
 import SearchBar from "./components/SearchBar";
 import { useState } from "react";
-import { spotifyLogin, useDesctructuredParams } from "./SpotifyAuth.js";
+import { useDesctructuredParams } from "./SpotifyAuth.js";
+import LoginPage from "./pages/login.js";
 // import SpotifyAPI from "./spotifyAPI.js";
 
 let playlist = {
@@ -21,18 +21,22 @@ function App() {
   //save spotifyAuth data to local storage before running API calls
   useDesctructuredParams();
 
+  //handle login authentication
+  let url = window.location;
+  let isAuthenticated = true;
+
+  function login(url) {
+    url.hash ? (isAuthenticated = true) : (isAuthenticated = false);
+  }
+
+  login(url);
+
+  //handle app functionality
+
   const [tracks, setTracks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [list, setList] = useState(playlist);
   const [savedList, setSavedList] = useState(savedPlaylist);
-
-  function handleLogin() {
-    spotifyLogin();
-  }
-
-  // function handleSearch() {
-  //   SpotifyAPI(searchQuery);
-  // }
 
   function addToPlaylist(track) {
     if (!list.tracks.includes(track)) {
@@ -67,22 +71,29 @@ function App() {
 
   return (
     <div>
-      <Button onClick={handleLogin}>Login to Spotify</Button>
-      <SearchBar
-        setTracks={setTracks}
-        setSearchQuery={setSearchQuery}
-        searchQuery={searchQuery}
-        tracks={tracks}
-      />
-      <div className="playlist-container">
-        <SearchResults trackList={tracks} addToPlaylist={addToPlaylist} />
-        <Playlist
-          playlist={list}
-          removeFromPlaylist={removeFromPlaylist}
-          changeName={changeName}
-          savePlaylist={savePlaylist}
-        />
-      </div>
+      {isAuthenticated ? (
+        <div>
+          <SearchBar
+            setTracks={setTracks}
+            setSearchQuery={setSearchQuery}
+            searchQuery={searchQuery}
+            tracks={tracks}
+          />
+          <div className="playlist-container">
+            <SearchResults trackList={tracks} addToPlaylist={addToPlaylist} />
+            <Playlist
+              playlist={list}
+              removeFromPlaylist={removeFromPlaylist}
+              changeName={changeName}
+              savePlaylist={savePlaylist}
+            />
+          </div>
+        </div>
+      ) : (
+        <div>
+          <LoginPage />
+        </div>
+      )}
     </div>
   );
 }

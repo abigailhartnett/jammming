@@ -12,8 +12,6 @@ async function SpotifyAPI(searchQuery, setTracks, tracks) {
       },
     };
 
-    console.log(searchQuery);
-
     //eslint-disable-next-line no-unused-vars
     const _trackList = await fetch(
       "https://api.spotify.com/v1/search?q=" + searchQuery + "&type=track",
