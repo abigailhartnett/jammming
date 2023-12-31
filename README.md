@@ -1,4 +1,4 @@
-# Jammming
+# Spotify App
 
 🚧 In progress 🚧
 
