@@ -11,11 +11,6 @@ let playlist = {
   tracks: [],
 };
 
-let savedPlaylist = {
-  name: "",
-  tracks: [],
-};
-
 function App() {
   //save spotifyAuth data to local storage before running API calls
   useDesctructuredParams();
@@ -35,7 +30,6 @@ function App() {
   const [tracks, setTracks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [list, setList] = useState(playlist);
-  const [savedList, setSavedList] = useState(savedPlaylist);
 
   function addToPlaylist(track) {
     if (!list.tracks.includes(track)) {
@@ -60,14 +54,6 @@ function App() {
     }));
   }
 
-  function savePlaylist() {
-    const uris = list.tracks.map((track) => track.uri);
-    setSavedList((prev) => ({ name: list.name, tracks: uris }));
-    console.log(savedList);
-    setList((prev) => ({ name: "", tracks: [] }));
-    console.log(playlist);
-  }
-
   return (
     <div>
       {isAuthenticated ? (
@@ -84,7 +70,6 @@ function App() {
               playlist={list}
               removeFromPlaylist={removeFromPlaylist}
               changeName={changeName}
-              savePlaylist={savePlaylist}
             />
           </div>
         </div>
@@ -93,6 +78,8 @@ function App() {
           <LoginPage />
         </div>
       )}
+      
+     
     </div>
   );
 }

@@ -1,15 +1,8 @@
-export async function savePlaylistToSpotify() {
-    
-
-
-
-    //Save to Spotify
+export async function savePlaylistToSpotify(tracks) {
     
     const userID = localStorage.getItem("userID");
     const apiURL = `https://api.spotify.com/v1/users/${userID}/playlists`;
-    
     const accessToken = localStorage.getItem("accessToken");
-    console.log(accessToken);
     
     const request = {
         method: "POST",
@@ -19,7 +12,6 @@ export async function savePlaylistToSpotify() {
         },
         body: JSON.stringify({
             name: 'My New Playlist 3',
-            description: 'A description for the playlist',
         }),
     };
 
@@ -36,15 +28,18 @@ export async function savePlaylistToSpotify() {
     } catch (error) {
         console.error("Error saving playlist to Spotify: ", error.message);
     }
-    saveTracksToSpotifyPlaylist();
+    if (tracks) {
+        saveTracksToSpotifyPlaylist(tracks)
+    } else {
+        console.log("whoops! no tracks")
+    }
 };
 
-export async function saveTracksToSpotifyPlaylist() {
+export async function saveTracksToSpotifyPlaylist(tracks) {
     const playlistID = localStorage.getItem("playlistID");
     const accessToken = localStorage.getItem("accessToken");
     const apiURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`
-
-const trackUris = ['spotify:track:0YVdTI4w1BEqSjGNXcRjX1']; // sample URI array -- delete me
+    const trackUris = tracks.map(track => "spotify:track:" + track.uri);
 
 // End create URI array
 
@@ -61,13 +56,10 @@ const trackUris = ['spotify:track:0YVdTI4w1BEqSjGNXcRjX1']; // sample URI array 
 
     try {
         const response = await fetch(apiURL, request);
-        console.log('Response:', response);
         console.log(playlistID); // delete me
         if (response.ok) {
             const data = await response.json();
-            console.log('API response:', data);
-            
-            console.log(data); // delete me -- replace as needed
+            return data;
         } else {
             console.error("Push tracks to playlist API falied: ", response.status, response.statusText);
         }

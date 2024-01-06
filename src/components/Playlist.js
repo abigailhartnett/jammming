@@ -2,7 +2,7 @@ import TrackList from "./TrackList";
 import Button from "./Button";
 import { savePlaylistToSpotify } from "../spotifySavePlaylistAPI";
 
-function Playlist({ playlist, removeFromPlaylist, changeName, savePlaylist }) {
+function Playlist({ playlist, removeFromPlaylist, changeName,  }) {
   function changeHandler(event) {
     changeName(event.target.value);
   }
