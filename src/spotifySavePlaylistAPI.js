@@ -41,12 +41,10 @@ export async function saveTracksToSpotifyPlaylist(tracks) {
     const apiURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`
     const trackUris = tracks.map(track => "spotify:track:" + track.uri);
 
-// End create URI array
-
     const request = {
         method: "POST",
         headers: {
-            "Content-Type": "application/json", // I may not need this one -- delete me?
+            "Content-Type": "application/json",
             Authorization: "Bearer " + accessToken
         },
         body: JSON.stringify({
@@ -56,11 +54,7 @@ export async function saveTracksToSpotifyPlaylist(tracks) {
 
     try {
         const response = await fetch(apiURL, request);
-        console.log(playlistID); // delete me
-        if (response.ok) {
-            const data = await response.json();
-            return data;
-        } else {
+        if (!response.ok) {
             console.error("Push tracks to playlist API falied: ", response.status, response.statusText);
         }
     } catch (error) {

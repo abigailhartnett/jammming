@@ -16,9 +16,7 @@ async function SpotifySearchAPI(searchQuery, setTracks, tracks) {
     if (response.ok) {
       const data = await response.json();
       if (data.tracks && data.tracks.items && data.tracks.items.length > 0) {
-        // Use returned data to setTracks to an array of objects containing only the data I want
         const tracksData = data.tracks.items.map((track) => {
-          // console.log(track.uri); -- delete me
           return {
             id: track.id,
             name: track.name,
