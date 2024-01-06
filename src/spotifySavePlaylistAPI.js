@@ -1,4 +1,4 @@
-export async function savePlaylistToSpotify(tracks) {
+export async function savePlaylistToSpotify(playlist) {
     
     const userID = localStorage.getItem("userID");
     const apiURL = `https://api.spotify.com/v1/users/${userID}/playlists`;
@@ -11,7 +11,7 @@ export async function savePlaylistToSpotify(tracks) {
           Authorization: "Bearer " + accessToken
         },
         body: JSON.stringify({
-            name: 'My New Playlist 3',
+            name: playlist.name,
         }),
     };
 
@@ -28,8 +28,8 @@ export async function savePlaylistToSpotify(tracks) {
     } catch (error) {
         console.error("Error saving playlist to Spotify: ", error.message);
     }
-    if (tracks) {
-        saveTracksToSpotifyPlaylist(tracks)
+    if (playlist.tracks) {
+        saveTracksToSpotifyPlaylist(playlist.tracks)
     } else {
         console.log("whoops! no tracks")
     }

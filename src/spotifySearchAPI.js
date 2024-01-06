@@ -1,4 +1,4 @@
-async function SpotifySearchAPI(searchQuery, setTracks, tracks) {
+async function SpotifySearchAPI(searchQuery, setTracks) {
   const accessToken = localStorage.getItem("accessToken");
   const apiURL = "https://api.spotify.com/v1/search?q="
 
