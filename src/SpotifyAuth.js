@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 const CLIENT_ID = "efabbdc785874423992878f942b0916d";
 // const REDIRECT_URI = "http://localhost:3000";
-const REDIRECT_URI = "https://65918ef2c44d5b0008e49085--abigailhartnett-codecademy-jammming.netlify.app/"
+const REDIRECT_URI = "https://abigailhartnett-codecademy-jammming.netlify.app"
 const SCOPES = [
   "playlist-modify-private",
   "playlist-modify-public",
