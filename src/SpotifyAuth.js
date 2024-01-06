@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 
 const CLIENT_ID = "efabbdc785874423992878f942b0916d";
-const REDIRECT_URI = "https://abigailhartnett-codecademy-jammming.netlify.app";
+// const REDIRECT_URI = "http://localhost:3000";
+const REDIRECT_URI = "https://65918ef2c44d5b0008e49085--abigailhartnett-codecademy-jammming.netlify.app/"
 const SCOPES = [
   "playlist-modify-private",
   "playlist-modify-public",
-  "user-read-currently-playing",
-  "user-read-playback-state",
+  "user-read-private",
+  "user-read-email",
 ];
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "token";
@@ -18,7 +19,7 @@ let loginURL = `
 ${AUTH_ENDPOINT}
 ?client_id=${CLIENT_ID}
 &redirect_uri=${REDIRECT_URI}
-&scopes=${SCOPES_URL_PARAM}
+&scope=${SCOPES_URL_PARAM}
 &response_type=${RESPONSE_TYPE}
 &show_dialog=true`;
 
@@ -50,6 +51,34 @@ export function useDesctructuredParams() {
       localStorage.setItem("accessToken", access_token);
       localStorage.setItem("tokenType", token_type);
       localStorage.setItem("expiresIn", expires_in);
+
+      getUserID();
     }
-  }, []);
+  }, []);  
+}
+
+export async function getUserID() {
+  const apiURL = "https://api.spotify.com/v1/me";
+  const accessToken = localStorage.getItem("accessToken");
+  const request = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+  }
+
+  try {
+    const response = await fetch(apiURL, request);
+
+    if (response.ok) {
+      const data = await response.json()
+      const userID = data.id;
+      localStorage.setItem("userID", userID);
+    } else {
+      console.error("User ID API request failed:", response.status, response.statusText);
+    } 
+    } catch (error) {
+      console.error("Error getting user ID: ", error.message);
+  }
 }
