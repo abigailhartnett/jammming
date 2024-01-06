@@ -70,6 +70,7 @@ function App() {
               playlist={list}
               removeFromPlaylist={removeFromPlaylist}
               changeName={changeName}
+              tracks={tracks}
             />
           </div>
         </div>

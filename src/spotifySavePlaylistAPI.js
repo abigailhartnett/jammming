@@ -39,7 +39,7 @@ export async function saveTracksToSpotifyPlaylist(tracks) {
     const playlistID = localStorage.getItem("playlistID");
     const accessToken = localStorage.getItem("accessToken");
     const apiURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`
-    const trackUris = tracks.map(track => "spotify:track:" + track.uri);
+    const trackUris = tracks.map(track => track.uri);
 
     const request = {
         method: "POST",
