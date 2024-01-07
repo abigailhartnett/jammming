@@ -55,17 +55,20 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       {isAuthenticated ? (
-        <div>
+        <div className="container">
           <SearchBar
             setTracks={setTracks}
             setSearchQuery={setSearchQuery}
             searchQuery={searchQuery}
             tracks={tracks}
+            style={{ gridColumn: "1 / span 2" }}
           />
-          <div className="playlist-container">
+          <div>
             <SearchResults trackList={tracks} addToPlaylist={addToPlaylist} />
+          </div>
+          <div>
             <Playlist
               playlist={list}
               removeFromPlaylist={removeFromPlaylist}
@@ -73,15 +76,17 @@ function App() {
               tracks={tracks}
             />
           </div>
+          <div className="footer">
+              <p style={{ alignSelf: "end" }}>Created by Abigail Hartnett. <a href="https://abigailhartnett.com">Visit my website</a> to see more of my work.</p>
+            </div>
         </div>
+  
       ) : (
         <div>
           <LoginPage />
         </div>
       )}
-      
-     
-    </div>
+    </>
   );
 }
 

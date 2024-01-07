@@ -7,14 +7,15 @@ const SearchBar = ({ setTracks, setSearchQuery, searchQuery }) => {
   }
 
   return (
-    <div>
-      <form className="search-bar" onSubmit={handleSearch}>
+    <div className="search-bar" >
+      <form className="search-input" onSubmit={handleSearch}>
         <input
           name="search"
           id="search"
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          className="body"
         />
         <button type="submit">Search</button>
       </form>

@@ -12,24 +12,27 @@ function Playlist({ playlist, removeFromPlaylist, changeName }) {
   }
 
   return (
-    <div className="trackList">
-      <h2>
+    <>
+     <h2>
         <input
           type="text"
           name="playlistName"
           id="playlistName"
           value={playlist.name}
           onChange={changeHandler}
-          className="heading-lg"
+          className="heading-lg track-list-heading"
         />
       </h2>
-
-      <TrackList
-        tracks={playlist.tracks}
-        removeFromPlaylist={removeFromPlaylist}
-      />
-      <Button onClick={clickHandlerSave}>Save Playlist</Button>
-    </div>
+      <div className="track-list-container">
+        <TrackList
+          tracks={playlist.tracks}
+          removeFromPlaylist={removeFromPlaylist}
+        />
+       </div>
+       <div style={{ padding: "2rem 2rem 1rem 2rem" }}>
+       <Button onClick={clickHandlerSave}>Save Playlist</Button>
+      </div>
+    </>
   );
 }
 

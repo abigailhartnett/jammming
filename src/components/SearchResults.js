@@ -2,10 +2,12 @@ import TrackList from "./TrackList";
 
 function SearchResults({ trackList, addToPlaylist }) {
   return (
-    <div className="trackList">
-      <h2 className="heading-lg">Search</h2>
+    <>
+      <h2 className="heading-lg track-list-heading">Search</h2>
+      <div className="track-list-container" >
       <TrackList tracks={trackList} addToPlaylist={addToPlaylist} />
-    </div>
+      </div>
+    </>
   );
 }
 

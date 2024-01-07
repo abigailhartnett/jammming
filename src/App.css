@@ -1,37 +1,163 @@
-.playlist-container {
+* {
+  color: #b3b3b3;
+  box-sizing: border-box;
+  font-family: system-ui, Arial, sans-serif;
+  font-weight: 300;
+  background-color: #121212;
+}
+
+/* Containers */
+
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.track-list-container {
+  padding: 0 2rem;
+  height: 60vh;
+  overflow: auto;
+  background-color: transparent;
+}
+
+.footer {
+  grid-column: 1 / span 2;
+  padding: 0 2rem;
+}
+
+/* .playlist-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+} */
+
+/* Elements */
+h2 {
+  margin: 0;
 }
+
+input {
+  border: solid 1px #545454;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: #fff;
+  font-weight: 600;
+  background-color: transparent;
+}
+
+div {
+  background-color: transparent;
+}
+
+a:hover {
+  cursor: pointer;
+  color: #fff;
+}
+
+/* Components */
+
+Button {
+  background-color: #1db954;
+  color: #212121;
+  border: none;
+  text-align: center;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.1s ease;
+  transition: background-color 0.1s ease;
+}
+
+Button:hover {
+  transform: scale(1.02);
+  background-color: #39C550;
+}
+
+/* Headings  */
 
 .heading-lg {
   font-size: 2rem;
   border: none;
   font-weight: bold;
+  color: #fff;
 }
 
 .heading-md {
   font-size: 1.5rem;
   font-weight: bold;
   padding-bottom: 1rem;
+  color: #fff;
 }
 
 .heading-sm {
-  font-weight: bold;
+  font-weight: 600;
   padding-bottom: 1rem;
+  color: #fff;
+  margin: 0;
 }
 
-.trackList {
-  padding: 0 2rem 2rem;
+.body {
+  font-size: 1rem;
 }
 
-.track {
-  border: 1px solid;
-  margin: 1rem 0;
-  padding: 1rem;
+.body-xs {
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+/* Tracks */
+
+.track-list-heading {
+  padding: 0 2rem;
+  margin: 0;
+  background-color: transparent;
+}
+
+.search-bar {
+  padding: 2rem;
+  background-color: transparent;
+  grid-column: 1 / span 2;
+}
+
+.search-input {
   display: grid;
   grid-template-columns: 3fr 1fr;
+  gap: 0.5rem;
 }
+
+/* Tracks */
+
+.track {
+  margin: 1rem 0;
+  display: grid;
+  padding: 0.5rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.track:hover {
+  background-color: #323232;
+}
+
+.track-titles {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: transparent;
+}
+
+/* Buttons */
 
 .playlist-button {
   display: flex;
@@ -39,6 +165,15 @@
   justify-content: right;
 }
 
-.search-bar {
-  padding: 2rem;
+.add-button {
+  border: solid 0.5px #b3b3b3;
+  background-color: transparent;
+  color: #fff;
+  transition: border 0.1s ease;
 }
+
+.add-button:hover {
+  border: solid 1px #fff;
+  background-color: transparent;
+}
+

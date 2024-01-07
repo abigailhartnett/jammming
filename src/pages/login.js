@@ -7,10 +7,10 @@ function LoginPage() {
   }
 
   return (
-    <>
-      <h1>Login to Spotify</h1>
+    <div>
+      <h1 className="heading-lg">Login to Spotify</h1>
       <Button onClick={handleLogin}>Login to Spotify</Button>
-    </>
+    </div>
   );
 }
 
