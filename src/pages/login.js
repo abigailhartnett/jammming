@@ -9,8 +9,9 @@ function LoginPage() {
   return (
     <div>
       <h1 className="heading-lg">Ready to build a playlist?</h1>
-      <p className="body">This app will allow you to build a playlist of your favorite songs, then save it to your Spotify account.</p>
+      <p className="body">This app will allow you to build a playlist of your favorite songs, then save it to your Spotify account</p>
       <Button onClick={handleLogin} className="login-button">Login to Spotify</Button>
+      <p className="body-xs">You must have a paid account to continue</p>
     </div>
   );
 }
