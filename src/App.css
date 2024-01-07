@@ -12,29 +12,33 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 1fr 1fr;
+  gap: 1rem;
   height: 100vh;
-  max-height: 100vh;
+  /* max-height: 100vh; */
   overflow: hidden;
-  margin: 0;
+  margin: 1rem;
+}
+
+.search-bar {
+  background-color: transparent;
+  grid-column: 1 / span 2;
 }
 
 .track-list-container {
-  padding: 0 2rem;
+  padding: 0 1rem;
   height: 60vh;
-  overflow: auto;
-  background-color: transparent;
+  overflow-y: auto;
+  overflow-x: visible;
+  margin-top: 1rem;
+  box-shadow: inset 1px 1px 10px 2px #000000;
+  border-radius: 5px;
+  background-color: #090909;
 }
 
 .footer {
   grid-column: 1 / span 2;
-  padding: 0 2rem;
+  padding: 0;
 }
-
-/* .playlist-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-} */
 
 /* Elements */
 h2 {
@@ -85,7 +89,7 @@ Button:hover {
 .heading-lg {
   font-size: 2rem;
   border: none;
-  font-weight: bold;
+  font-weight: 600;
   color: #fff;
 }
 
@@ -114,21 +118,27 @@ Button:hover {
 
 /* Tracks */
 
+.track-heading-section {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
 .track-list-heading {
-  padding: 0 2rem;
-  margin: 0;
+  padding: 0;
+  margin: 0 1rem;
   background-color: transparent;
 }
 
-.search-bar {
-  padding: 2rem;
-  background-color: transparent;
-  grid-column: 1 / span 2;
+.track-list {
+  /* background-color: #101010; */
+  background-color: red;
+  
 }
 
 .search-input {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 3fr auto;
   gap: 0.5rem;
 }
 
@@ -157,12 +167,18 @@ Button:hover {
   background-color: transparent;
 }
 
+.icons {
+  color: red;
+}
+
 /* Buttons */
 
 .playlist-button {
-  display: flex;
-  align-items: center;
-  justify-content: right;
+  background-color: white;
+}
+
+.playlist-button:hover {
+  background-color: #ffffff;
 }
 
 .add-button {
