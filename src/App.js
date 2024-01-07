@@ -7,7 +7,7 @@ import { useDesctructuredParams } from "./SpotifyAuth.js";
 import LoginPage from "./pages/login.js";
 
 let playlist = {
-  name: "My Playlist",
+  name: "My playlist",
   tracks: [],
 };
 
@@ -76,13 +76,13 @@ function App() {
               tracks={tracks}
             />
           </div>
-          <div className="footer">
-              <p style={{ alignSelf: "end" }}>Created by Abigail Hartnett. <a href="https://abigailhartnett.com">Visit my website</a> to see more of my work.</p>
+          <div className="footer body-xs">
+              <p>Created by Abigail Hartnett. <a href="https://abigailhartnett.com">Visit my website</a> to see more of my work.</p>
             </div>
         </div>
   
       ) : (
-        <div>
+        <div className="login-container">
           <LoginPage />
         </div>
       )}

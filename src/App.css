@@ -1,5 +1,4 @@
 * {
-  color: #b3b3b3;
   box-sizing: border-box;
   font-family: system-ui, Arial, sans-serif;
   font-weight: 300;
@@ -13,10 +12,16 @@
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  height: 100vh;
-  /* max-height: 100vh; */
-  overflow: hidden;
+  margin: 2rem;
+}
+
+.login-container {
   margin: 1rem;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .search-bar {
@@ -26,7 +31,7 @@
 
 .track-list-container {
   padding: 0 1rem;
-  height: 60vh;
+  height: 70vh;
   overflow-y: auto;
   overflow-x: visible;
   margin-top: 1rem;
@@ -38,9 +43,16 @@
 .footer {
   grid-column: 1 / span 2;
   padding: 0;
+  color: #b3b3b3;
 }
 
 /* Elements */
+p {
+  color: #b3b3b3;
+  max-width: 500px;
+  margin: 0;
+}
+
 h2 {
   margin: 0;
 }
@@ -54,8 +66,16 @@ input {
   background-color: transparent;
 }
 
+input:focus {
+  outline: none;
+}
+
 div {
   background-color: transparent;
+}
+
+a {
+  color: #b3b3b3;
 }
 
 a:hover {
@@ -91,11 +111,13 @@ Button:hover {
   border: none;
   font-weight: 600;
   color: #fff;
+  margin-bottom: 1rem;
 }
 
 .heading-md {
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 600;
+  border: none;
   padding-bottom: 1rem;
   color: #fff;
 }
@@ -119,21 +141,15 @@ Button:hover {
 /* Tracks */
 
 .track-heading-section {
-  display: flex;
-  align-items: center;
   margin-left: 1rem;
 }
 
 .track-list-heading {
+  display: flex;
+  align-items: center;
   padding: 0;
-  margin: 0 1rem;
+  margin: 0;
   background-color: transparent;
-}
-
-.track-list {
-  /* background-color: #101010; */
-  background-color: red;
-  
 }
 
 .search-input {
@@ -153,6 +169,7 @@ Button:hover {
   align-items: center;
   background-color: transparent;
   border-radius: 5px;
+  color: #b3b3b3;
 }
 
 .track:hover {
@@ -193,3 +210,14 @@ Button:hover {
   background-color: transparent;
 }
 
+.login-button {
+  margin-top: 1rem;
+}
+
+.save-playlist-button {
+  background-color: #ffffff;
+}
+
+.save-playlist-button:hover {
+  background-color: #ffffff;
+}

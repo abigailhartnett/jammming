@@ -13,6 +13,7 @@ const SearchBar = ({ setTracks, setSearchQuery, searchQuery }) => {
           name="search"
           id="search"
           type="text"
+          placeholder="Search for songs..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="body"
