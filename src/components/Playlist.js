@@ -14,7 +14,7 @@ function Playlist({ playlist, removeFromPlaylist, changeName }) {
   return (
     <div>
      <h2 className="track-list-heading">
-        <span style={{ color: "#ffffff", fontSize: "1rem" }}><i class="fa-solid fa-pencil"></i></span>
+        <span style={{ color: "#ffffff", fontSize: "1rem" }} className="icon"><i class="fa-solid fa-pencil"></i></span>
         <input
           type="text"
           name="playlistName"
@@ -31,7 +31,7 @@ function Playlist({ playlist, removeFromPlaylist, changeName }) {
           removeFromPlaylist={removeFromPlaylist}
         />
       </div>
-      <div style={{ padding: "1rem 0" }}>
+      <div className="button-padding">
         <Button onClick={clickHandlerSave} className="save-playlist-button">Save Playlist</Button>
       </div>
     </div>

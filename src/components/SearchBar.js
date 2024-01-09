@@ -18,7 +18,7 @@ const SearchBar = ({ setTracks, setSearchQuery, searchQuery }) => {
           onChange={(e) => setSearchQuery(e.target.value)}
           className="body"
         />
-        <button type="submit">Search</button>
+        <button type="submit" id="search-button">Search</button>
       </form>
     </div>
   );
